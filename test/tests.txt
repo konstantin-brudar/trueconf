@@ -1,0 +1,3 @@
+# Format: test_file|expected_number
+dump.pcap|2778
+empty.pcap|0
