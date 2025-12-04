@@ -1,3 +1,7 @@
-# Format: test_file|expected_number
-dump.pcap|2778
-empty.pcap|0
+# Format: test_file|options|expected_number
+dump.pcap||2778
+dump.pcap|--src-port 443|1486
+dump.pcap|--dst-port 443|1292
+dump.pcap|--src-port 57558 --dst-port 443|101
+dump.pcap|--src-port 443 --dst-port 443|0
+empty.pcap||

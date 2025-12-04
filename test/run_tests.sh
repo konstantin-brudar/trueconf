@@ -24,7 +24,7 @@ echo "Program: $PROGRAM"
 echo "Test file: $TESTS_FILE"
 echo
 
-while IFS='|' read -r test_file expected; do
+while IFS='|' read -r test_file options expected; do
     # Skip empty lines and comments
     [[ -z "$test_file" || "$test_file" =~ ^# ]] && continue
 
@@ -35,14 +35,15 @@ while IFS='|' read -r test_file expected; do
         continue
     fi
 
-    output=$("$PROGRAM" "$test_file" 2>/dev/null)
+    options=$(echo "$options" | xargs)
+    output=$("$PROGRAM" "$test_file" $options 2>/dev/null)
     actual=$(echo "$output" | tr -d '\r\n[:space:]')
 
     if [[ "$actual" == "$expected" ]]; then
-        echo "PASSED: $test_file (expected: $expected, got: $actual)"
+        echo "PASSED: $test_file $options (expected: $expected, got: $actual)"
         ((PASSED++))
     else
-        echo "FAILED: $test_file (expected: $expected, got: '$actual')"
+        echo "FAILED: $test_file $options (expected: $expected, got: '$actual')"
         ((FAILED++))
     fi
 

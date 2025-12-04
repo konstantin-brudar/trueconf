@@ -32,3 +32,8 @@ $ make
 ```
 $ make test
 ```
+
+Запуск программы из каталога build для подсчета количества TCP пакетов в pcap файле `<filename>` с учетом фильтров (необязательных) по исходному порту `<srcport>` и порту назначения `<dstport>`:
+```
+$ ./tcpcount <filename> [--src-port <srcport>] [--dst-port <dstport>] [--help]
+```
